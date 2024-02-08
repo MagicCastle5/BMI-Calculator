@@ -1,26 +1,70 @@
-Name = input("What's your name?  ")
-print("Hello " + Name)
+from tkinter import *
 
-Age = int(input("How old are you? "))
-Height = float(input("How tall are you?"))
-Weight = float(input("How weight are you?"))
+window = Tk()
+window.geometry("420x420")
+window.title("BMI Calculator")
+icon = PhotoImage(file='logo.png')
+window.iconphoto(True, icon)
+window.config(background="#03befc")
 
-HeightM: float = Height/100
-BMI: float = Weight/(HeightM**2)
 
-print("************")
-print("Your age is " + str(Age) + " years")
-print("Your height is " + str(Height) + "cm")
-print("Your weight is " + str(Weight) + "kg")
-print(f"So, your BMI value is {round(BMI)}")
+def submit():
+    name = entry1.get()
+    age = int(entry2.get())
+    height = float(entry3.get())
+    weight = float(entry4.get())
 
-if BMI <= 18.4:
-    print("You're underweight")
-elif 18.4 < BMI < 25:
-    print("You're healthy'")
-elif 25. < BMI < 39.9:
-    print("You're overweight")
-else:
-    print("You're obese")
+    heightMeter: float = height / 100
+    bmi: float = weight / (heightMeter ** 2)
 
-print("Thank you")
+    if bmi <= 18.4:
+        state = "underweight"
+    elif 18.4 < bmi < 25:
+        state = "healthy"
+    elif 25. < bmi < 39.9:
+        state = "overweight"
+    else:
+        state = "obese"
+
+    label1 = Label(window, text="Hello "+name, font=('Times', 20, 'bold'), fg="#561380", bg="#03befc")
+    label2 = Label(window, text=f"Your BMI value is {round(bmi, 1)}", font=('Times', 20, 'bold'), fg="#561380", bg="#03befc")
+    label3 = Label(window, text="You're " + state, font=('Times', 20, 'bold'), fg="#561380", bg="#03befc")
+    label4 = Label(window, text="Thank you!", font=('Times', 20, 'bold'), fg="#561380", bg="#03befc")
+
+    label1.pack()
+    label2.pack()
+    label3.pack()
+    label4.pack()
+
+
+meter = PhotoImage(file='meter.png')
+banner = Label(window, text='BMI Calculater', font=('Chocolate Bar Demo', 50, 'bold'), fg='#1f1c78', bg='#03befc', image=meter,
+               compound='bottom')
+banner.pack()
+
+askName = Label(window, text='Name', font=('Arial', 20, 'bold'), bg="#03befc")
+askName.pack()
+entry1 = Entry(window, font=('Comic Sans MS', 20,), fg='#080b47', bg='#a2cee0')
+entry1.pack()
+
+askAge = Label(window, text='Age', font=('Arial', 20, 'bold'), bg="#03befc")
+askAge.pack()
+entry2 = Entry(window, font=('Comic Sans MS', 20,), fg='#080b47', bg='#a2cee0')
+entry2.pack()
+
+askHeight = Label(window, text='Height', font=('Arial', 20, 'bold'), bg="#03befc")
+askHeight.pack()
+entry3 = Entry(window, font=('Comic Sans MS', 20,), fg='#080b47', bg='#a2cee0')
+entry3.pack()
+
+askWeight = Label(window, text='Weight', font=('Arial', 20, 'bold'), bg="#03befc")
+askWeight.pack()
+entry4 = Entry(window, font=('Comic Sans MS', 20,), fg='#080b47', bg='#a2cee0')
+entry4.pack()
+
+button = Button(window,
+                text='Submit', command=submit, font=('Arial', 20, 'bold'), fg='#200f6b', bg='#036ffc',
+                activeforeground='#200f6b', activebackground='#036ffc')
+button.pack()
+
+window.mainloop()
