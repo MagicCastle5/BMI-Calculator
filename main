@@ -1,0 +1,26 @@
+Name = input("What's your name?  ")
+print("Hello " + Name)
+
+Age = int(input("How old are you? "))
+Height = float(input("How tall are you?"))
+Weight = float(input("How weight are you?"))
+
+HeightM: float = Height/100
+BMI: float = Weight/(HeightM**2)
+
+print("************")
+print("Your age is " + str(Age) + " years")
+print("Your height is " + str(Height) + "cm")
+print("Your weight is " + str(Weight) + "kg")
+print(f"So, your BMI value is {round(BMI)}")
+
+if BMI <= 18.4:
+    print("You're underweight")
+elif 18.4 < BMI < 25:
+    print("You're healthy'")
+elif 25. < BMI < 39.9:
+    print("You're overweight")
+else:
+    print("You're obese")
+
+print("Thank you")
